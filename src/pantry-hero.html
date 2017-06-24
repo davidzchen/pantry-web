@@ -1,0 +1,36 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="pantry-hero-search.html">
+
+<dom-module id="pantry-hero">
+  <style>
+    :host {
+      display: block;
+      padding: 20px 10px 40px 10px;
+      background-color: var(--app-primary-color);
+      color: var(--app-header-foreground-color);
+      text-align: center;
+    }
+
+    h1 {
+      font-weight: 300;
+      padding: 0 0 20px 0;
+    }
+  </style>
+
+  <template>
+    <h1>
+      Find Bazel build rules for your favorite <br>
+      languages, tools, and frameworks.
+    </h1>
+    <pantry-hero-search></pantry-hero-search>
+    <pantry-list></pantry-list>
+  </template>
+
+  <script>
+    class PantryHero extends Polymer.Element {
+      static get is() {
+        return 'pantry-hero';
+      }
+    }
+  </script>
+</dom-module>

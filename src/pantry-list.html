@@ -1,0 +1,68 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<dom-module id="pantry-list">
+  <style>
+    :host {
+      display: block;
+      background-color: #f3f3f3;
+    }
+
+    .grid {
+      @apply(--layout-horizontal);
+      @apply(--layout-wrap);
+      @apply(--layout-justified);
+      margin: 0 10px 32px 0px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .grid li {
+      -webkit-flex: 1 1;
+      flex: 1 1;
+      -webkit-flex-basis: 33%;
+      flex-basis: 33%;
+      max-width: 33%;
+    }
+
+    .grid a {
+      display: block;
+      text-decoration: none;
+    }
+
+    @media (max-width: 767px) {
+      .grid li {
+        -webkit-flex-basis: 50%;
+        flex-basis: 50%;
+        max-width: 50%;
+      }
+    }
+  </style>
+
+  <template>
+    <ul class="grid">
+      <template is="dom-repeat" items="[[items]]" sort="_sortItems" initial-count="1">
+        <li>
+          <a href$="[[_getItemHref(item)]]">
+            <pantry-card item="[[item]]"></pantry-card>
+          </a>
+        </li>
+      </template>
+    </ul>
+  </template>
+
+  <script>
+    class PantryList extends Polymer.Element {
+      static get is() {
+        return 'pantry-list';
+      }
+
+      static get properties() {
+        return {
+          items: {
+            type: Array
+          }
+        }
+      }
+    }
+  </script>
+</dom-module>

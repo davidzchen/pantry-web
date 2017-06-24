@@ -1,0 +1,56 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-icons/paper-icons.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+
+<dom-module id="pantry-hero-search">
+  <style>
+    :host {
+      display: block;
+      text-align: left;
+    }
+
+    paper-input-container {
+      width: 60%; 
+      padding: 0;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #81C784;
+
+      --paper-input-container-underline: {
+        display: none;
+      }
+      --paper-input-container-underline-focus: {
+        display: none;
+      }
+      --paper-input-container-input: {
+        margin: 0;
+      }
+      --paper-input-container-label: {
+        color: var(--app-header-foreground-color);
+      }
+      --paper-input-container-label-focus: {
+        display: none;
+      }
+    }
+  </style>
+
+  <template>
+    <paper-input-container no-label-float>
+      <paper-icon-button prefix icon="search"></paper-icon-button>
+      <label>Search packages</label>
+      <input is="iron-input" id="search">
+      <paper-icon-button suffix icon="clear"></paper-icon-button>
+    </paper-input-container>
+  </template>
+
+  <script>
+    class PantryHeroSearch extends Polymer.Element {
+      static get is() {
+        return 'pantry-hero-search';
+      }
+    }
+  </script>
+</dom-module>
