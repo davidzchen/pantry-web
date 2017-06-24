@@ -23,6 +23,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 
+<link rel="import" href="pantry-home.html">
+
 <dom-module id="pantry-app">
   <template>
     <style>
@@ -90,7 +92,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         data="{{routeData}}"
         tail="{{subroute}}"></app-route>
 
-    <iron-media-query query="max-width: 400px" query-matches="{{smallScreen}}">
+    <iron-media-query query="max-width: 767px" query-matches="{{smallScreen}}">
     </iron-media-query>
 
     <app-drawer-layout drawer-width="288px" force-narrow>
@@ -156,8 +158,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       static get observers() {
         return [
-          '_routePageChanged(routeData.page)',
+          '_routePageChanged(routeData.page)'
         ]
+      }
+
+      ready() {
+        super.ready();
+        // Custom elements polyfill safe way to indicate an element has been upgraded.
+        this.removeAttribute('unresolved');
       }
 
       _routePageChanged(page) {
@@ -168,7 +176,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
 
-      _pageChanged(page) {
+      _pageChanged(page, oldPage) {
         // Load page import on demand. Show 404 page if fails
         var resolvedPageUrl = this.resolveUrl('pantry-' + page + '.html');
         this.importHref(resolvedPageUrl, null, this._showPage404, true);
@@ -178,5 +186,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.page = 'view404';
       }
     }
+
+    customElements.define(PantryApp.is, PantryApp);
   </script>
 </dom-module>
